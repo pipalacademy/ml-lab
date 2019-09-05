@@ -5,5 +5,5 @@ provider "aws" {
 }
 
 provider "digitalocean" {
-  token = "${chomp(file("digitalocean-token.txt"))}"
+  token = var.digitalocean_token
 }

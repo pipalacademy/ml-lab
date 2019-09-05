@@ -1,3 +1,6 @@
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "digitalocean_token" {}
 
 variable "aws_region" {
   type = "string"
@@ -8,9 +11,6 @@ variable "instance_type" {
   type = "string"
   default = "t2.micro"
 }
-
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
 
 variable "names" {
   type = "list"
