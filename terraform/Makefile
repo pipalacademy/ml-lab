@@ -10,6 +10,10 @@ init:
 
 apply:
 	terraform apply $(TF_OPTIONS)
+	make output 
 
 destroy:
 	terraform destroy $(TF_OPTIONS)
+
+output: 
+	terraform output

@@ -1,23 +1,21 @@
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "mlnode" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-*-18.04-amd64-server-*"]
+    values = ["mlnode-*"]
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
+  owners = ["self"]
 }
 
 resource "aws_instance" "mlnode" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.mlnode.id
   instance_type = var.instance_type
+  subnet_id = aws_subnet.mlnode.id
+  security_groups = [aws_security_group.mlnode.id]
+  associate_public_ip_address = true
 
   tags = {
     Name = var.names[count.index]
