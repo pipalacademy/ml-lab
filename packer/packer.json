@@ -1,0 +1,46 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "aws_region": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "{{user `aws_region`}}",
+
+    "source_ami_filter": {
+      "filters": {
+      "virtualization-type": "hvm",
+      "name": "ubuntu/images/hvm-ssd/ubuntu-*-18.04-amd64-server-*",
+      "root-device-type": "ebs"
+      },
+      "owners": ["099720109477"],
+      "most_recent": true
+    },
+    "instance_type": "c5.large",
+    "ssh_username": "ubuntu",
+    "ami_name": "mlnode-{{timestamp}}",
+    "tags": {
+      "ami_type": "mlnode",
+      "os": "ubuntu",
+      "os_version": "18.04"
+    },
+    "launch_block_device_mappings": [ {
+        "device_name": "/dev/sda1",
+        "volume_size": 100,
+        "volume_type": "gp2"
+    }],
+    "associate_public_ip_address": true
+  }],
+  "provisioners": [{
+      "type": "shell",
+      "inline": ["sudo apt-get -y install python"]
+    }, 
+    {
+      "type": "ansible",  
+      "playbook_file": "playbook.yml"
+  }]
+}

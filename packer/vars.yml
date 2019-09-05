@@ -1,0 +1,10 @@
+system_packages:
+  - build-essential
+  - docker.io
+
+users:
+  - name: ml
+    groups: 
+      - sudo
+      - docker
+    password: "$6$zVT8Nrxg2Cf.Mg.X$a9ZxyDDH07HRZqF0ZLv//ppggm3xBch7zuJL2AGPF7YZqUuCKCYiVKuVAypP8jtpZ0kERH.ToaziP0/CTHIAI/"
