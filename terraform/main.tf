@@ -14,7 +14,7 @@ resource "aws_instance" "mlnode" {
   ami           = data.aws_ami.mlnode.id
   instance_type = var.instance_type
   subnet_id = aws_subnet.mlnode.id
-  security_groups = [aws_security_group.mlnode.id]
+  vpc_security_group_ids = [aws_security_group.mlnode.id]
   associate_public_ip_address = true
 
   tags = {
