@@ -7,4 +7,18 @@ running for every participant.
 
 # How to Use
 
-TODO
+Go to terraform directory:
+
+    $ cd terraform
+
+Prepare secrets.tfvars:
+
+    $ cp secrets.tfvars.sample secrets.tfvars
+    # edit the secrets.tfvars and add add access keys and tokens
+
+To start the nodes:
+
+    $ cd terraform
+    $ make apply
+
+You may have to edit the `secrets.tfvars` to specify the `instance_type` and `num_nodes`

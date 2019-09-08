@@ -12,13 +12,13 @@ data "aws_ami" "mlnode" {
 
 resource "aws_instance" "mlnode" {
   ami           = data.aws_ami.mlnode.id
-  instance_type = var.instance_type
+  instance_type = var.nodes[count.index]["instance_type"]
   subnet_id = aws_subnet.mlnode.id
   vpc_security_group_ids = [aws_security_group.mlnode.id]
   associate_public_ip_address = true
 
   tags = {
-    Name = var.names[count.index]
+    Name = var.nodes[count.index]["name"]
     Creator = "Pipal Academy"
     Purpose = "ML Course"
   }
