@@ -1,10 +1,19 @@
 system_packages:
   - build-essential
   - docker.io
+  - python-pip
 
+python_packages:
+  - docker-py
+
+# To change the password, generate a new one using:
+# https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
 users:
   - name: ml
     groups: 
       - sudo
       - docker
-    password: "$6$zVT8Nrxg2Cf.Mg.X$a9ZxyDDH07HRZqF0ZLv//ppggm3xBch7zuJL2AGPF7YZqUuCKCYiVKuVAypP8jtpZ0kERH.ToaziP0/CTHIAI/"
+    password: "$6$/SwBPrcKrwjGKZ3l$Lr00URi3zikl977rgEaIkauR0e9Y1LsNLOYWOIOVU2QHTMy3hTkYc4ri2khqJJ5ilihjWaffqvCJG9QiyaT7r/"
+
+# Change this before building the packer image
+JUPYTERLAB_TOKEN: secret-token

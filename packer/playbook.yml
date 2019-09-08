@@ -14,6 +14,16 @@
       apt: 
         package: "{{ system_packages }}"
 
+    - name: install python packages
+      pip:
+        name: "{{ item }}"
+      with_items: "{{ python_packages }}"
+
+    - name: uninstall nginx
+      apt:
+        package: nginx
+        state: absent
+
     - name: create user groups
       group: name={{item.name}} state={{item.state | default('present')}} 
       with_items: "{{ users }}"
@@ -36,3 +46,15 @@
 
     - name: enable password less sudo for users in sudo group
       lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL:ALL) NOPASSWD:ALL'"
+
+    - name: start ml-lab container
+      docker_container:
+        name: ml-lab
+        image: pipalacademy/ml-lab
+        env:
+          JUPYTERLAB_TOKEN: "{{ JUPYTERLAB_TOKEN }}"
+        volumes:
+          - /home/ml/notebooks:/tf/notebooks
+        ports:
+          - "0.0.0.0:80:8888"
+        restart_policy: always
