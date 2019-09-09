@@ -14,6 +14,3 @@ users:
       - sudo
       - docker
     password: "$6$/SwBPrcKrwjGKZ3l$Lr00URi3zikl977rgEaIkauR0e9Y1LsNLOYWOIOVU2QHTMy3hTkYc4ri2khqJJ5ilihjWaffqvCJG9QiyaT7r/"
-
-# Change this before building the packer image
-JUPYTERLAB_TOKEN: secret-token
