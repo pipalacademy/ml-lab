@@ -9,7 +9,7 @@ variable "aws_region" {
 
 variable "instance_type" {
   type = "string"
-  default = "t2.micro"
+  default = "m5.xlarge"
 }
 
 variable "nodes" {
@@ -80,4 +80,9 @@ variable "names" {
 variable "num_nodes" {
   type = "string"
   default = "2"
+}
+
+variable "jupyterlab_token" {
+  type = "string"
+  default = "jupyterlab"
 }

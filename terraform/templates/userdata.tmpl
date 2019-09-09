@@ -1,0 +1,14 @@
+#! /bin/bash
+# This script invoked whenever a new instance is started.
+
+exec > /tmp/userdata.txt 2>&1
+echo user data script
+echo 'JUPYTERLAB_TOKEN="${jupyterlab_token}"'
+
+ docker pull pipalacademy/ml-lab
+docker run \
+	--restart always \
+	-v /home/ml/notebooks:/tf/notebooks \
+	-e JUPYTERLAB_TOKEN="${jupyterlab_token}" \
+	-p "0.0.0.0:80:8888" \
+	pipalacademy/ml-lab

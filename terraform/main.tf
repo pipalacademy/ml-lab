@@ -17,6 +17,8 @@ resource "aws_instance" "mlnode" {
   vpc_security_group_ids = [aws_security_group.mlnode.id]
   associate_public_ip_address = true
 
+  user_data = templatefile("templates/userdata.tmpl", {jupyterlab_token = var.jupyterlab_token})
+
   tags = {
     Name = var.nodes[count.index]["name"]
     Creator = "Pipal Academy"
@@ -36,3 +38,26 @@ resource "digitalocean_record" "mlnode" {
   count  = var.num_nodes  
 }
 
+resource "aws_instance" "master" {
+  ami           = data.aws_ami.mlnode.id
+  instance_type = var.instance_type
+  subnet_id = aws_subnet.mlnode.id
+  vpc_security_group_ids = [aws_security_group.mlnode.id]
+  associate_public_ip_address = true
+
+  user_data = templatefile("templates/userdata.tmpl", {jupyterlab_token = var.jupyterlab_token})
+
+  tags = {
+    Name = "master"
+    Creator = "Pipal Academy"
+    Purpose = "ML Course"
+  }
+}
+
+resource "digitalocean_record" "master" {
+  domain = "pipal.in"
+  name   = "master.ml"
+
+  type = "A"
+  value = aws_instance.master.public_ip
+}
