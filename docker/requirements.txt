@@ -49,9 +49,9 @@ Markdown==3.1.1
 MarkupSafe==1.1.1
 matplotlib==3.1.1
 mistune==0.8.4
-mkl-fft==1.0.14
-mkl-random==1.0.2
-mkl-service==2.0.2
+#mkl-fft==1.0.14
+#mkl-random==1.0.2
+#mkl-service==2.0.2
 murmurhash==1.0.0
 nbconvert==5.6.0
 nbformat==4.4.0
@@ -77,7 +77,7 @@ pyOpenSSL==19.0.0
 pyparsing==2.4.2
 pyrsistent==0.15.4
 PySocks==1.7.0
-pyspark==2.1.1+hadoop2.7
+#pyspark==2.1.1+hadoop2.7
 python-dateutil==2.8.0
 pytz==2019.2
 pyzmq==18.1.0
