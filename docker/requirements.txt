@@ -115,3 +115,7 @@ webencodings==0.5.1
 websockets==8.0.2
 Werkzeug==0.15.6
 wrapt==1.11.2
+keras
+pydot
+graphviz
+Pillow
