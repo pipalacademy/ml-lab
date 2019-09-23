@@ -68,6 +68,13 @@ resource "aws_security_group" "mlnode" {
 
   ingress {
     cidr_blocks = ["0.0.0.0/0"]
+    from_port = 6000
+    to_port = 7000
+    protocol = "tcp"
+  }
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
     from_port = 8000
     to_port = 9000
     protocol = "tcp"
